@@ -28,6 +28,8 @@ The second part seems incredibly simple, but it took me forever. The main proble
 
 However, even if you reset your password, logging in doesn't always work. I tried so many times to log in with my account after resetting during class, and eventually I had to switch to a TA account, and eventually that worked -- once. I finally managed to log in reliably only after many more attempts at home.
 
+
+
 ![Successful attempt](./Logging%20in%20after%20the%20requisite%20password%20reset.png)
 
 
