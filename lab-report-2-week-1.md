@@ -95,4 +95,4 @@ In the end, my final optimization used 5 keystrokes (after I ran the two command
 
 
 
-I hope this walkthrough
+I hope this walkthrough has helped.
