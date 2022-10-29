@@ -7,6 +7,7 @@ This post will show what I did for my search engine and testing.
 Part 1:
 
 
+`
 import java.io.IOException;
 import java.net.URI;
 import java.io.*; 
@@ -62,6 +63,8 @@ class SearchEngine {
         Server.start(port, new Handler());
     }
 }
+`
+
 
 ![Add #1](./search%20engine%201.png)
 ![Add #2](./search%20engine%202.png)
@@ -69,20 +72,26 @@ class SearchEngine {
 ![Add #4](./search%20engine%204.png)
 ![Add #5](./search%20engine%205.png)
 
-These 5 add queries use this add code:
+These 5 add queries use this add code (not a method, but an if branch off of the general handler method):
+
 ![Add Code](./search%20engine%20add.png)
 
-The return values are all modified by the parameters (specifically parameters[1], the first argument after the path) created by splitting up the URL after the path. This value is added to the strArray, and then is displayed in the return value.
+Each has 2 arguments passed to it: a garbage argument ("s" or something like that, I forgot), and then a relevant one. This argument is "apple", "pineapple", "nap", "app", and "potato", respectively. The arguments are separated from their raw form using split(), and stored in the array "parameters". 
+
+parameters[1], the important argument is added to the strArray (the place where all the values that have been added are stored), and then is printed (for debug) and returned so it can be displayed on screen.
 
 
-And the searches:
+
+Meanwhile, the searches:
+
 ![Search #1](./search%20engine%206.png)
 ![Search #2](./search%20engine%207.png)
 
 Use this search code:
+
 ![Search Code](./search%20engine%20search.png)
 
-Just like with adding, the search term is found by using split, and is at index 1 in parameters. The contains string method is used to get all of the strArray contents that contain the search parameter. The returnValue has all of these concatenated to it (along with a newline).
+Just like with adding, the search term is found by using split (the arguments are stored in the parameters array; they are s, and then app/a for the first and second, respectively), and is at index 1 in parameters. The contains string method is used to get all of the strArray contents that contain the search parameter. The returnValue has all of these concatenated to it (along with a newline).
 
 
 
@@ -98,9 +107,13 @@ For my tests, I fixed the Array and File Examples' methods, ReverseInPlace and g
 ReverseInPlace:
 
 
+
+Symptom (and Bug):
+
 ![Original, Broken ReverseInPlace](./broken%20reverseinplace.png)
 
-This code iterates through the entire list and switches what it has already reversed back to normal.
+This code is broken because it doesn't actually swap anything. All it does it just set the index at i to its "opposite" in the array. To make things worse, since it iterates through the entire array, it actually changes each element in the second half to itself (since their values were copied to the elements in the first half).
+
 
 
 ![Failure-Inducing Test for ReverseInPlace](./ArrayTest.png)
@@ -108,14 +121,16 @@ This code iterates through the entire list and switches what it has already reve
 This test causes a failure.
 
 
+
 ![Failing Output](./failure%20message%20for%20reverseinplace.png)
 
-The test fails like this -- the arrayList output is not equal to the swapped arrayList.
+The test fails like as shown here -- the arrayList output is not equal to the swapped arrayList.
 
 
-![Fixed ReverseInPlace](./working%20reverseinplace.png)
 
-To fix this code, all I had to do was integer-divide by 2 to only iterate through the first half of the list.
+![Fixed ReverseInPlace](./reverseInPlaceFixed2.png)
+
+To fix this code, all I had to do was implement a simple switching algorithm, as well as integer-divide by 2 to only iterate through the first half of the list (to prevent switching back). 
 
 
 
@@ -126,19 +141,24 @@ GetFiles:
 
 
 
-![Failure-Inducing Test for GetFile](./ListTests.png)
+![Failure-Inducing Test for GetFile](./failureInducingTestFileTests.png)
 
-This test causes a failure -- specifically an error.
-
-
-![Error Message for GetFile Test2](./error%20message%20for%20file%20find.png)
-
-Here is the error message -- you can also see the working output.
+This test causes a failure with the original code. It's a little long because of redundancy (I spent 4 hours trying to figure out why it wasn't working only to realize I forgot to add @Test to my second test, and what I was actually testing was an empty test. After that I only needed 5 minutes).
 
 
-![Working Implementation of GetFile](./working%20file%20find.png)
 
-The issue here is that an exception was thrown -- the fix was simply to disable the exception handler.
+![Error Message for GetFile Test2](./failedTestFileTests.png)
+
+Here is the failure message for FileTests -- the more-files directory is mistakenly added to the output (and all of the files more than a layer deep aren't there, but you can't see that).
+
+
+![Working Implementation of GetFile](./fixedFileTestCode.png)
+
+And here is the fixed implementation. The only fixes necessary were directory checking (to not add directories to the list) and recurive ability to search within any directories that were found.
+
+
+
+The bugs (adding files, lack of search depth) were obviously at fault for the mistaken addition of the more-files directory to the "results" return list. Not shown is the failure to add files that are deeper into the directory structure, such as e.txt.
 
 
 
