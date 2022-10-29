@@ -154,27 +154,27 @@ Here is the failure message for FileTests -- the more-files directory is mistake
 
 ![Working Implementation of GetFile](./fixedFileTestCode.png)
 
-And here is the fixed implementation. The only fixes necessary were directory checking (to not add directories to the list) and recurive ability to search within any directories that were found.
+And here is the fixed implementation. The only fixes necessary were directory checking (to not add directories to the list) and recusrive ability (by making results into an argument and adding a call to itself) to search within any directories that were found.
 
 
 
 The bugs (adding files, lack of search depth) were obviously at fault for the mistaken addition of the more-files directory to the "results" return list. Not shown is the failure to add files that are deeper into the directory structure, such as e.txt.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
 Hope this helped enough!
 
 
