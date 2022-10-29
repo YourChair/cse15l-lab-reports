@@ -100,6 +100,8 @@ A search for the same thing, except with a capital letter in the middle (to show
 
 
 And lastly, here is a combo output. -v and -c print out the number of lines that do NOT contain the search term. -i does its own thing (but it could be a game-changer for words that are both proper nouns and normal nouns (like the word bush), or for removing capitalized words at the start of sentences)
+
+
 ![combo output](./grep%20-c%20-v%20-i%20buSh%20chapter%2010.png)
 
 
