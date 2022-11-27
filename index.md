@@ -10,3 +10,8 @@
 [Lab Report 5 for week 7](https://YourChair.github.io/cse15l-lab-reports/lab-report-5-week-7.html)
 
 
+
+
+[Lab Report 5.5 for week 9](https://YourChair.github.io/cse15l-lab-reports/lab-report-5-week-9.html)
+
+
